@@ -1,0 +1,15 @@
+/* 自定义短代码块字体修改在这里 */
+code {
+    color: #d93200;
+    
+}
+
+.markdown-body code {
+    font-size: 14px;
+    padding: 0.2em 0.3em 0.2em 0.3em;
+    font-family: Consolas,Liberation Mono,Menlo,monospace;
+}
+
+.markdown-body pre>code {
+    font-size: 14px;
+}
