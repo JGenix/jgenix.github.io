@@ -18,25 +18,26 @@
   <meta name="author" content="gejoyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+    <meta name="description" content="本文从源码开始解读开源 TinyWebserver 项目，彻底理解客户端连接服务端的过程发生了什么，服务器又是如何处理来自客户端的请求。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/hello-world">
+<meta property="og:title" content="从源码解读 TinyWebServer">
+<meta property="og:url" content="http://example.com/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TinWebServer">
 <meta property="og:site_name" content="gejoyy&#39;s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="本文从源码开始解读开源 TinyWebserver 项目，彻底理解客户端连接服务端的过程发生了什么，服务器又是如何处理来自客户端的请求。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/article_img_2.png">
-<meta property="article:published_time" content="2023-06-11T14:39:02.912Z">
-<meta property="article:modified_time" content="2023-06-13T14:37:03.577Z">
+<meta property="article:published_time" content="2023-06-16T01:53:49.000Z">
+<meta property="article:modified_time" content="2023-06-16T14:34:02.485Z">
 <meta property="article:author" content="gejoyy">
+<meta property="article:tag" content="cpp">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/article_img_2.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Hello World-gejoyy&#39;s blog</title>
+  <title>从源码解读 TinyWebServer-gejoyy&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Hello World</span>
+            <span id="subtitle">从源码解读 TinyWebServer</span>
           
         </div>
 
@@ -220,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-11 22:39" pubdate>
-          2023年6月11日 晚上
+        <time datetime="2023-06-16 09:53" pubdate>
+          2023年6月16日 上午
         </time>
       </span>
     
@@ -232,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          976 字
         
       </span>
     
@@ -243,7 +244,7 @@
         
         
         
-          4 分钟
+          9 分钟
         
       </span>
     
@@ -289,12 +290,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">从源码解读 TinyWebServer</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年6月13日 晚上
+                    本文最后更新于：2023年6月16日 晚上
                   
                 
               </p>
@@ -302,21 +303,19 @@
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+                <p>本文从源码开始解读开源 TinyWebserver 项目，彻底理解客户端连接服务端的过程发生了什么，服务器又是如何处理来自客户端的请求。</p>
 <span id="more"></span>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="TinyWebServer"><a href="#TinyWebServer" class="headerlink" title="TinyWebServer"></a>TinyWebServer</h3><p>Linux 下 C++轻量级 Web 服务器，助力初学者快速实践网络编程，搭建属于自己的服务器。</p>
+<ul>
+<li>使用 <strong>线程池 + 非阻塞 socket + epoll(ET 和 LT 均实现) + 事件处理(Reactor 和模拟 Proactor 均实现)</strong> 的并发模型。</li>
+<li>使用 <strong>状态机</strong> 解析 HTTP 请求报文，支持解析 <strong>GET 和 POST</strong> 请求。</li>
+<li>访问服务器数据库实现 web 端用户 <strong>注册、登录</strong> 功能，可以请求服务器 <strong>图片和视频文件</strong>。</li>
+<li>实现 <strong>同步&#x2F;异步日志系统</strong>，记录服务器运行状态。</li>
+<li>经 Webbench 压力测试可以实现 <strong>上万的并发连接</strong> 数据交换。</li>
+</ul>
+<h3 id="config-模块"><a href="#config-模块" class="headerlink" title="config 模块"></a>config 模块</h3><p>打开源文件首先看到 config 的头文件，根据标识可以知道这是一个用户自定义头，所以我们先跳进去看看有什么东西。<br>这里体现出整个项目的优点：<strong>模式切换</strong>，也就是说这是一个复合的 ET&#x2F;LT。作者在 Listenfd 上和 cfd 上都建立了两种模式，意味着我们有四种组合方式。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> CONFIG_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> CONFIG_H</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;webserver.h&quot;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Config</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Config</span>();<br><br>    ~<span class="hljs-built_in">Config</span>() &#123;&#125;;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">parse_arg</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span></span>;<br><br>    <span class="hljs-comment">//端口号</span><br>    <span class="hljs-type">int</span> PORT;<br><br>    <span class="hljs-comment">//数据库校验方式</span><br>    <span class="hljs-type">int</span> SQLVerify;<br><br>    <span class="hljs-comment">//日志写入方式</span><br>    <span class="hljs-type">int</span> LOGWrite;<br><br>    <span class="hljs-comment">//触发组合模式</span><br>    <span class="hljs-type">int</span> TRIGMode;<br><br>    <span class="hljs-comment">//listenfd触发模式</span><br>    <span class="hljs-type">int</span> LISTENTrigmode;<br><br>    <span class="hljs-comment">//connfd触发模式</span><br>    <span class="hljs-type">int</span> CONNTrigmode;<br><br>    <span class="hljs-comment">//优雅关闭链接</span><br>    <span class="hljs-type">int</span> OPT_LINGER;<br><br>    <span class="hljs-comment">//数据库连接池数量</span><br>    <span class="hljs-type">int</span> sql_num;<br><br>    <span class="hljs-comment">//线程池内的线程数量</span><br>    <span class="hljs-type">int</span> thread_num;<br><br>    <span class="hljs-comment">//是否关闭日志</span><br>    <span class="hljs-type">int</span> close_log;<br><br>    <span class="hljs-comment">//并发模型选择</span><br>    <span class="hljs-type">int</span> actor_model;<br>&#125;;<br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -325,6 +324,38 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/webserverber/" class="category-chain-item">webserverber</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/cpp/">#cpp</a>
+      
+        <a href="/tags/linux/">#linux</a>
+      
+        <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">#网络编程</a>
+      
+    </div>
   
 </div>
 
@@ -336,18 +367,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TinWebServer" title="从源码解读 TinyWebServer">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">从源码解读 TinyWebServer</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cpp-note" title="cpp 笔记">
-                        <span class="hidden-mobile">cpp 笔记</span>
+                      <a href="/hello-world" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
