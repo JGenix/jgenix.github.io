@@ -8,3 +8,9 @@ code {
 .markdown-body code { 
     font-size: 88%;
 } 
+
+/* 图片居中 */
+.markdown-body img {
+  margin: 0 auto;
+  display: block;
+}
