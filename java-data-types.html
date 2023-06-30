@@ -26,7 +26,7 @@
 <meta property="og:description" content="Java 中的数据类型有两类：值类型（又叫内置数据类型，基本数据类型），引用类型（除值类型以外，都是引用类型，包括字符串、数组等）。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-28T14:20:08.000Z">
-<meta property="article:modified_time" content="2023-06-29T07:30:33.228Z">
+<meta property="article:modified_time" content="2023-06-30T08:19:40.779Z">
 <meta property="article:author" content="gejoyy">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="数据类型">
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.6k 字
+          6.3k 字
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          39 分钟
+          53 分钟
         
       </span>
     
@@ -295,7 +295,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年6月29日 下午
+                    本文最后更新于：2023年6月30日 下午
                   
                 
               </p>
@@ -512,6 +512,36 @@
 </ul>
 <p>自定义 equals 示例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 自定义类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> x;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> y;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String desc;<br>&#125;<br><br><span class="hljs-comment">// 自定义equals：</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object o)</span> &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span> == o) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">if</span> (o == <span class="hljs-literal">null</span> || getClass() != o.getClass()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-type">Point</span> <span class="hljs-variable">that</span> <span class="hljs-operator">=</span> (Point) o;<br>    <span class="hljs-keyword">return</span> x == that.x &amp;&amp; y == that.y;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="数值计算"><a href="#数值计算" class="headerlink" title="数值计算"></a>数值计算</h2><h3 id="浮点数计算问题"><a href="#浮点数计算问题" class="headerlink" title="浮点数计算问题"></a>浮点数计算问题</h3><p>计算机是把数值保存在了变量中，不同类型的数值变量能保存的数值范围不同，当数值超过类型能表达的数值上限则会发生溢出问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(<span class="hljs-number">0.1</span> + <span class="hljs-number">0.2</span>); <span class="hljs-comment">// 0.30000000000000004</span><br>System.out.println(<span class="hljs-number">1.0</span> - <span class="hljs-number">0.8</span>); <span class="hljs-comment">// 0.19999999999999996</span><br>System.out.println(<span class="hljs-number">4.015</span> * <span class="hljs-number">100</span>); <span class="hljs-comment">// 401.49999999999994</span><br>System.out.println(<span class="hljs-number">123.3</span> / <span class="hljs-number">100</span>); <span class="hljs-comment">// 1.2329999999999999</span><br><span class="hljs-type">double</span> <span class="hljs-variable">amount1</span> <span class="hljs-operator">=</span> <span class="hljs-number">2.15</span>;<br><span class="hljs-type">double</span> <span class="hljs-variable">amount2</span> <span class="hljs-operator">=</span> <span class="hljs-number">1.10</span>;<br>System.out.println(amount1 - amount2); <span class="hljs-comment">// 1.0499999999999998</span><br></code></pre></td></tr></table></figure>
+
+<p>出现上述结果的原因是，计算机以<strong>二进制</strong>存储数值，，浮点数也不例外。比如，0.1 的二进制表示为 0.0 0011 0011 0011… （0011 无限循环)，再转换为十进制就是0.1000000000000000055511151231257827021181583404541015625。对于计算机而言，0.1 无法精确表达，这是浮点数计算造成精度损失的根源。</p>
+<h3 id="使用-BigDecimal"><a href="#使用-BigDecimal" class="headerlink" title="使用 BigDecimal"></a>使用 BigDecimal</h3><p>BigDecimal 是不可变的，可以用来表示任意精度的带符号十进制数。double的问题是从小数点转换到二进制丢失精度，二进制丢失精度。BigDecimal在处理的时候把十进制小数扩大N倍让它在整数上进行计算，并保留相应的精度信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">BigDecimal</span> <span class="hljs-variable">bigDecimal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-number">0.1</span>);<br>System.out.println(<span class="hljs-string">&quot;bigDecimal值为: &quot;</span> + bigDecimal);<br><span class="hljs-comment">//输出  0.1000000000000000055511151231257827021181583404541015625</span><br><br>System.out.println(String.format(<span class="hljs-string">&quot;%.1f&quot;</span>, bigDecimal)); <span class="hljs-comment">// 0.1</span><br></code></pre></td></tr></table></figure>
+
+<p>参数类型为double的构造方法的结果有一定的<strong>不可预知性</strong>，需要通过格式化输出！</p>
+<p><u><strong>推荐使用字符串为形参传入构造函数</strong></u></p>
+<ul>
+<li><p>String 类型参的构造方法是<strong>完全可预知的</strong>。比如 new BigDecimal(“0.1”) 将创建一个 BigDecimal对象，它正好等于预期的 0.1。因此优先使用String构造方法。</p>
+</li>
+<li><p>当是形参为浮点数时，推荐先将<strong>浮点数转换为字符串类型</strong>然后放入构造函数中。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">BigDecimal</span> <span class="hljs-variable">bigDecimal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(Double.toString(<span class="hljs-number">2.1</span>));<br><span class="hljs-comment">/* 或者 */</span><br><span class="hljs-type">BigDecimal</span> <span class="hljs-variable">bigDecimal1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Double</span>(<span class="hljs-number">2.1</span>).toString());<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="BigDecimal-判等问题"><a href="#BigDecimal-判等问题" class="headerlink" title="BigDecimal 判等问题"></a>BigDecimal 判等问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wrong</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-string">&quot;1.0&quot;</span>).equals(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-string">&quot;1&quot;</span>))); <span class="hljs-comment">//false</span><br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">right</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-string">&quot;1.0&quot;</span>).compareTo(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-string">&quot;1&quot;</span>)) == <span class="hljs-number">0</span>); 		<span class="hljs-comment">//true</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>BigDecimal 的 equals 方法的注释中说明了原因，equals 比较的是 BigDecimal 的 value 和 scale，1.0 的 scale 是 1，1 的 scale 是 0，所以结果一定是 false。</p>
+<p><strong>如果只比较 BigDecimal 的 value，可以使用 compareTo 方法</strong>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://tobebetterjavaer.com/basic-grammar/basic-data-type.html">Java数据类型</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://book.douban.com/subject/2130190/">《Java 编程思想（Thinking in java）》</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.im/post/59cd71835188255d3448faf6">Java 基本数据类型和引用类型</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3780005.html">深入剖析 Java 中的装箱和拆箱</a></p>
+</li>
+</ul>
 
                 
               </div>
