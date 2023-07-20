@@ -4,6 +4,10 @@ code {
     
 }
 
+/* .markdown-body {
+  line-height: 1rem;
+} */
+
 /* 短代码块设置 */
 .markdown-body code { 
     font-size: 88%;
@@ -42,4 +46,12 @@ code {
 /* 引用最上方空隙 */
 .markdown-body blockquote>:first-child {
     margin-top: 1em;
+}
+
+.markdown-body .highlight pre, .markdown-body pre {
+    padding: 0.6rem 1rem;
+    padding-top:  0.6rem;
+    padding-right: 1rem;
+    padding-bottom:  0.6rem;
+    padding-left: 1rem;
 }
