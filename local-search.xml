@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>leetcode 其他题型</title>
+    <link href="/leetcode%E5%85%B6%E4%BB%96%E9%A2%98%E5%9E%8B.html"/>
+    <url>/leetcode%E5%85%B6%E4%BB%96%E9%A2%98%E5%9E%8B.html</url>
+    
+    <content type="html"><![CDATA[<p>模拟、并查集、区间求和、进制转换。</p><span id="more"></span>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>leetcode 算法思想</title>
     <link href="/leetcode%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3.html"/>
     <url>/leetcode%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3.html</url>
@@ -35,7 +60,7 @@
     <link href="/leetcode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html"/>
     <url>/leetcode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html</url>
     
-    <content type="html"><![CDATA[<p>数组与矩阵、链表、字符串、树、栈、队列、哈希表、图、位运算。</p><span id="more"></span>]]></content>
+    <content type="html"><![CDATA[<p>链表、字符串、树、栈、队列、数组与矩阵、哈希表、图、位运算。</p><span id="more"></span>]]></content>
     
     
     <categories>
