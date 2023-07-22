@@ -27,10 +27,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/java.png">
 <meta property="article:published_time" content="2023-07-20T11:38:40.000Z">
-<meta property="article:modified_time" content="2023-07-21T09:02:09.926Z">
+<meta property="article:modified_time" content="2023-07-21T09:56:16.939Z">
 <meta property="article:author" content="gejoyy">
-<meta property="article:tag" content="基础类型">
-<meta property="article:tag" content="集合">
+<meta property="article:tag" content="容器">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/java.png">
   
@@ -234,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.3k 字
+          6.4k 字
         
       </span>
     
@@ -324,7 +323,7 @@
 <p>比较相等：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Integer</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br><span class="hljs-type">Integer</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>a == b;	<span class="hljs-comment">// true</span><br><span class="hljs-type">Integer</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">200</span>;<br><span class="hljs-type">Integer</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> <span class="hljs-number">200</span>;<br>c == d;	<span class="hljs-comment">// false</span><br>Objects.equals(c, d);  <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
 
-<p>Integer 默认缓存 [-128,127]，故 a，b 指向同一对象，而非重新创建对象。</p>
+<p>Integer 默认缓存 [-128,127]，故 a，b 指向同一对象（地址），而非重新创建对象。</p>
 <h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><p>创建数组：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[] array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">5</span>];<br><span class="hljs-type">int</span>[] array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;;<br><span class="hljs-type">int</span>[] array = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;;<br></code></pre></td></tr></table></figure>
 
@@ -658,9 +657,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B/">#基础类型</a>
-      
-        <a href="/tags/%E9%9B%86%E5%90%88/">#集合</a>
+        <a href="/tags/%E5%AE%B9%E5%99%A8/">#容器</a>
       
     </div>
   
@@ -673,6 +670,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/leetcode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" title="leetcode 数据结构">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode 数据结构</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

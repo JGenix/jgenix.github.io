@@ -26,7 +26,7 @@
 <meta property="og:description" content="刷代码随想录过程中记得笔记。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-05T13:17:13.000Z">
-<meta property="article:modified_time" content="2023-06-30T13:47:45.450Z">
+<meta property="article:modified_time" content="2023-07-21T12:27:53.053Z">
 <meta property="article:author" content="gejoyy">
 <meta property="article:tag" content="cpp">
 <meta property="article:tag" content="note">
@@ -295,7 +295,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年6月30日 晚上
+                    本文最后更新于：2023年7月21日 晚上
                   
                 
               </p>
@@ -577,8 +577,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 记录每个柱子左边柱子最大高度</span><br>maxLeft[<span class="hljs-number">0</span>] = height[<span class="hljs-number">0</span>];<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; size; i++) &#123;<br>    maxLeft[i] = <span class="hljs-built_in">max</span>(height[i], maxLeft[i - <span class="hljs-number">1</span>]);<br>&#125;<br><span class="hljs-comment">// 记录每个柱子右边柱子最大高度</span><br>maxRight[size - <span class="hljs-number">1</span>] = height[size - <span class="hljs-number">1</span>];<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = size - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>    maxRight[i] = <span class="hljs-built_in">max</span>(height[i], maxRight[i + <span class="hljs-number">1</span>]);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>待续……</p>
 
                 
               </div>
