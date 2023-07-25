@@ -18,16 +18,16 @@
   <meta name="author" content="gejoyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在学习开源轻量级 web 服务器 TinyWebServer 过程中，总结记录的相关知识点。">
+    <meta name="description" content="记录学习开源轻量级 web 服务器 TinyWebServer 过程中的相关知识点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webserver 知识点">
 <meta property="og:url" content="http://example.com/webserver%E5%AD%A6%E4%B9%A0">
 <meta property="og:site_name" content="gejoyy&#39;s blog">
-<meta property="og:description" content="在学习开源轻量级 web 服务器 TinyWebServer 过程中，总结记录的相关知识点。">
+<meta property="og:description" content="记录学习开源轻量级 web 服务器 TinyWebServer 过程中的相关知识点。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/article_img_2.png">
 <meta property="article:published_time" content="2023-06-10T07:20:25.000Z">
-<meta property="article:modified_time" content="2023-06-30T09:17:58.008Z">
+<meta property="article:modified_time" content="2023-07-24T05:27:15.213Z">
 <meta property="article:author" content="gejoyy">
 <meta property="article:tag" content="webserver">
 <meta property="article:tag" content="linux">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          3.3k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          29 分钟
+          28 分钟
         
       </span>
     
@@ -296,7 +296,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年6月30日 下午
+                    本文最后更新于：2023年7月24日 下午
                   
                 
               </p>
@@ -304,10 +304,7 @@
             
               <div class="markdown-body">
                 
-                <p>在学习开源轻量级 web 服务器 <a target="_blank" rel="noopener" href="https://github.com/qinguoyi/TinyWebServer/tree/master">TinyWebServer</a> 过程中，总结记录的相关知识点。</p>
-<span id="more"></span>
-
-<h2 id="五种-I-x2F-O-模型"><a href="#五种-I-x2F-O-模型" class="headerlink" title="五种 I&#x2F;O 模型"></a>五种 I&#x2F;O 模型</h2><ul>
+                <h2 id="五种-I-x2F-O-模型"><a href="#五种-I-x2F-O-模型" class="headerlink" title="五种 I&#x2F;O 模型"></a>五种 I&#x2F;O 模型</h2><ul>
 <li><strong>阻塞 IO</strong>:调用者调用了某个函数，等待这个函数返回，期间什么也不做，不停的去检查这个函数有没有返回，必须等这个函数返回才能进行下一步动作</li>
 <li><strong>非阻塞 IO</strong>:非阻塞等待，每隔一段时间就去检测 IO 事件是否就绪。没有就绪就可以做其他事。非阻塞 I&#x2F;O 执行系统调用总是立即返回，不管时间是否已经发生，若时间没有发生，则返回-1，此时可以根据 errno 区分这两种情况，对于 accept，recv 和 send，事件未发生时，errno 通常被设置成 eagain</li>
 <li><strong>信号驱动 IO</strong>:linux 用套接口进行信号驱动 IO，安装一个信号处理函数，进程继续运行并不阻塞，当 IO 时间就绪，进程收到 SIGIO 信号。然后处理 IO 事件。</li>
