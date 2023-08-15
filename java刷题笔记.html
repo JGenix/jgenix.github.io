@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/java.png">
 <meta property="article:published_time" content="2023-07-20T11:38:40.000Z">
-<meta property="article:modified_time" content="2023-08-03T11:13:13.497Z">
+<meta property="article:modified_time" content="2023-08-15T10:42:21.579Z">
 <meta property="article:author" content="gejoyy">
 <meta property="article:tag" content="容器">
 <meta name="twitter:card" content="summary_large_image">
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.3k 字
+          7.3k 字
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          53 分钟
+          61 分钟
         
       </span>
     
@@ -295,7 +295,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年8月3日 晚上
+                    本文最后更新于：2023年8月15日 晚上
                   
                 
               </p>
@@ -328,7 +328,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">array[<span class="hljs-number">3</span>];<br></code></pre></td></tr></table></figure>
 
 <p>获取长度：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">array.length;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">array.length;<br><span class="hljs-comment">// length 是数组的一个属性，不加()</span><br></code></pre></td></tr></table></figure>
 
 <p>排序：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">Arrays.sort(array);<br><span class="hljs-comment">// int[] 不能直接做降序排列</span><br><span class="hljs-comment">// 想做降序排列只能用Integer[]</span><br>Integer[] array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>[<span class="hljs-number">2</span>];<br>Arrays.sort(array, Comparitor.naturalOrder());	<span class="hljs-comment">// 升序排列</span><br>Arrays.sort(array, Comparator.reverseOrder());	<span class="hljs-comment">// 降序排列</span><br></code></pre></td></tr></table></figure>
@@ -354,8 +354,14 @@
 <p>字符串转整数：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">string</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;123&quot;</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">integer</span> <span class="hljs-operator">=</span> Integer.parseInt(string);<br></code></pre></td></tr></table></figure>
 
+<p>字符串与char数组互转：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span>;<br>charp[] charArray = s.toCharArray();<br><br><span class="hljs-type">char</span>[] ch = &#123;<span class="hljs-string">&#x27;h&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;l&#x27;</span>,<span class="hljs-string">&#x27;l&#x27;</span>,<span class="hljs-string">&#x27;o&#x27;</span>&#125;;<br><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(ch);<br></code></pre></td></tr></table></figure>
+
+<p>遍历字符串字母：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-comment">// 方法一</span><br><span class="hljs-type">char</span>[] charArray = str.toCharArray();<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; charArray.length; i++)&#123;<br>    System.out.println(c[i]);<br>&#125;<br><span class="hljs-comment">// 方法二</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>	<span class="hljs-type">char</span> <span class="hljs-variable">ch</span> <span class="hljs-operator">=</span> str.charAt(i);<br>    System.out.println(ch);<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>字符串长度：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">length</span> <span class="hljs-operator">=</span> string.length();<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">length</span> <span class="hljs-operator">=</span> string.length();<br><span class="hljs-comment">// length() 是 String 类的一个方法，需要加（）</span><br></code></pre></td></tr></table></figure>
 
 <p>截取字符串：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> sb.substring(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);	<span class="hljs-comment">// str = &quot;a&quot;;</span><br></code></pre></td></tr></table></figure>
@@ -363,11 +369,11 @@
 <p>字符的位置：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> str.indexOf(b);	<span class="hljs-comment">// index = 1</span><br></code></pre></td></tr></table></figure>
 
-<p>字符串转字符数组：</p>
+<p>String 转 char 数组：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String str;<br><span class="hljs-type">char</span>[] temp = str.toCharArray();<br></code></pre></td></tr></table></figure>
 
 <p>字符串分割：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello world&quot;</span>;<br>String[] word = str.split(<span class="hljs-string">&quot; &quot;</span>);	<span class="hljs-comment">// word = [&quot;hello&quot;, &quot;world&quot;]</span><br><span class="hljs-comment">// 这里必须是字符串</span><br><span class="hljs-comment">// 如果有两个空格连在一起，会在数组中加入一个&quot;&quot;（空字符串）</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello,world&quot;</span>;<br>String[] word = str.split(<span class="hljs-string">&quot;,&quot;</span>);	<span class="hljs-comment">// word = [&quot;hello&quot;, &quot;world&quot;]</span><br><span class="hljs-comment">// 这里必须是字符串</span><br><span class="hljs-comment">// 如果有两个空格连在一起，会在数组中加入一个&quot;&quot;（空字符串）</span><br></code></pre></td></tr></table></figure>
 
 <p>将字符串数组合并为长字符串（中间插入）：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] words = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>&#125;;<br><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> String.join(<span class="hljs-string">&quot; &quot;</span>, words);<br><span class="hljs-comment">// str = &quot;hello world&quot;;</span><br></code></pre></td></tr></table></figure>
@@ -377,6 +383,12 @@
 
 <p>删除字符串头尾的空格：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;  abc  &quot;</span>;<br>str.trim();	<span class="hljs-comment">// str = &quot;abc&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>字符串翻转:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>(str1).reverse().toString();<br></code></pre></td></tr></table></figure>
+
+<p>字符串转换：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 基本数据类型</span><br><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> String.valueOf(a);<br><br><span class="hljs-comment">// 对象</span><br><span class="hljs-type">Integer</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> a.toString();  <span class="hljs-comment">// 也能用valueOf</span><br><br><span class="hljs-comment">// String 转基本类型</span><br><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> Integer.parseInt(str);<br><span class="hljs-type">double</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> Double.parseDouble(str);<br><span class="hljs-type">float</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> Float.parseFloat(str);<br><span class="hljs-type">long</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> Long.parseLong(str);<br><span class="hljs-type">byte</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> Byte.parseByte(str);<br><span class="hljs-type">boolean</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> Boolean.parseBoolean(str);<br><span class="hljs-type">short</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> Short.parseShort(str);<br></code></pre></td></tr></table></figure>
 
 <h3 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1815753">Java 中用 Deque 接口代替 Stack 接口完成栈功能</a></p>
