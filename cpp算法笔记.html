@@ -20,14 +20,14 @@
   
     <meta name="description" content="刷代码随想录的笔记。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cpp 算法笔记">
+<meta property="og:title" content="算法笔记">
 <meta property="og:url" content="http://example.com/cpp%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0">
 <meta property="og:site_name" content="gejoyy&#39;s blog">
 <meta property="og:description" content="刷代码随想录的笔记。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/LeetCode.png">
 <meta property="article:published_time" content="2023-09-05T13:17:13.000Z">
-<meta property="article:modified_time" content="2023-09-12T14:44:24.415Z">
+<meta property="article:modified_time" content="2023-09-14T14:27:41.257Z">
 <meta property="article:author" content="gejoyy">
 <meta property="article:tag" content="cpp">
 <meta property="article:tag" content="note">
@@ -39,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>cpp 算法笔记-gejoyy&#39;s blog</title>
+  <title>算法笔记-gejoyy&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">cpp 算法笔记</span>
+            <span id="subtitle">算法笔记</span>
           
         </div>
 
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          95 分钟
+          98 分钟
         
       </span>
     
@@ -290,12 +290,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">cpp 算法笔记</h1>
+            <h1 style="display: none">算法笔记</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年9月12日 晚上
+                    本文最后更新于：2023年9月14日 晚上
                   
                 
               </p>
@@ -304,7 +304,7 @@
               <div class="markdown-body">
                 
                 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ul>
-<li><strong>不一定非要根据条件推出结果，反之，遍历所有结果是否满足条件！</strong></li>
+<li><strong>逆向思考，由y-&gt;x,遍历所有结果 y 找到满足条件 x！</strong></li>
 </ul>
 <h3 id="易错"><a href="#易错" class="headerlink" title="易错"></a>易错</h3><ul>
 <li>声明类型并初始化！！！</li>
@@ -335,16 +335,14 @@
 <li><p>基于快速排序的二分，时间复杂度为O(n)。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">quickfind</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr, <span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = left, j = right;<br>    <span class="hljs-type">int</span> val = arr[left];<br>    <span class="hljs-keyword">while</span> (i &lt; j) &#123;<br>        <span class="hljs-keyword">while</span> (i &lt; j &amp;&amp; val &lt;= arr[j]) j--;<br>        arr[i] = arr[j];<br>        <span class="hljs-keyword">while</span> (i &lt; j &amp;&amp; val &gt;= arr[i]) i++;<br>        arr[j] = arr[i];<br>    &#125;<br>    arr[i] = val;<br>    <span class="hljs-keyword">if</span> (arr.<span class="hljs-built_in">size</span>() - i == k)<br>        <span class="hljs-keyword">return</span> arr[i];<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr.<span class="hljs-built_in">size</span>() - i &gt; k)    <span class="hljs-comment">// 若右边元素大于k个，肯定在右边</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">quickfind</span>(arr, i + <span class="hljs-number">1</span>, right, k);<br>    <span class="hljs-keyword">else</span>							<span class="hljs-comment">// 若右边元素小于k个，肯定在左边</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">quickfind</span>(arr, left, i - <span class="hljs-number">1</span>, k);<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>数据结构，使用虚拟头结点</p>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>数据结构</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListNode</span> &#123;<br>  <span class="hljs-type">int</span> val;<br>  ListNode* next;<br>  <span class="hljs-built_in">ListNode</span>(<span class="hljs-type">int</span> val):<span class="hljs-built_in">val</span>(val), <span class="hljs-built_in">next</span>(<span class="hljs-literal">nullptr</span>)&#123;&#125;<br>&#125;;<br>ListNode* node = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(val);<br><br><span class="hljs-comment">// 使用虚拟头节点</span><br>ListNode* dummyHead = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(<span class="hljs-number">0</span>);<br>dummyHead-&gt;next = head;<br>ListNode* cur = dummyHead;<br><br><span class="hljs-comment">// 指针数组（哈希）</span><br>vector&lt;ListNode*&gt; vec;<br>ListNode* cur=head;<br><span class="hljs-keyword">while</span>(cur)&#123;<br>  vec.<span class="hljs-built_in">push_back</span>(cur);<br>  cur=cur-&gt;next;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>翻转链表</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        ListNode* temp; <span class="hljs-comment">// 保存cur的下一个节点</span><br>        ListNode* cur = head;<br>        ListNode* pre = <span class="hljs-literal">NULL</span>;<br>        <span class="hljs-keyword">while</span>(cur) &#123;<br>            temp = cur-&gt;next;  <span class="hljs-comment">// 保存一下 cur的下一个节点，因为接下来要改变cur-&gt;next</span><br>            cur-&gt;next = pre; <span class="hljs-comment">// 翻转操作</span><br>            <span class="hljs-comment">// 更新pre 和 cur指针</span><br>            pre = cur;<br>            cur = temp;<br>        &#125;<br>        <span class="hljs-keyword">return</span> pre;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-
-
 <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>双指针法判断<strong>回文</strong>：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countSubstrings</span><span class="hljs-params">(string s)</span> </span>&#123;<br>    <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++) &#123;<br>        result += <span class="hljs-built_in">extend</span>(s, i, i); <span class="hljs-comment">// 以 i 为中心</span><br>        result += <span class="hljs-built_in">extend</span>(s, i, i + <span class="hljs-number">1</span>); <span class="hljs-comment">// 以 i 和 i+1 为中心</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">extend</span><span class="hljs-params">(<span class="hljs-type">const</span> string&amp; s, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> </span>&#123;<br>    <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> &amp;&amp; j &lt; s.<span class="hljs-built_in">size</span>() &amp;&amp; s[i] == s[j]) &#123;<br>        i--;<br>        j++;<br>        res++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countSubstrings</span><span class="hljs-params">(string s)</span> </span>&#123;<br>  <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++) &#123;<br>      result += <span class="hljs-built_in">extend</span>(s, i, i); <span class="hljs-comment">// 以 i 为中心</span><br>      result += <span class="hljs-built_in">extend</span>(s, i, i + <span class="hljs-number">1</span>); <span class="hljs-comment">// 以 i 和 i+1 为中心</span><br>  &#125;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">extend</span><span class="hljs-params">(<span class="hljs-type">const</span> string&amp; s, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> </span>&#123;<br>  <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> &amp;&amp; j &lt; s.<span class="hljs-built_in">size</span>() &amp;&amp; s[i] == s[j]) &#123;<br>      i--;<br>      j++;<br>      res++;<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>数据结构</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">TreeNode</span> &#123;<br>  <span class="hljs-type">int</span> val;<br>  TreeNode *left;<br>  TreeNode *right;<br>  <span class="hljs-built_in">TreeNode</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">val</span>(x), <span class="hljs-built_in">left</span>(<span class="hljs-literal">nullptr</span>), <span class="hljs-built_in">right</span>(<span class="hljs-literal">nullptr</span>) &#123;&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
@@ -373,6 +371,10 @@
 <li><p><strong>递归一定看函数返回什么，指针？整数？，利用起来<code>root-&gt;left = deleteNode(root-&gt;left,key);</code>。</strong></p>
 </li>
 </ul>
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">bool</span> visited[MAX_V];         <span class="hljs-comment">//用于标记顶点是否被访问过，访问过为true</span><br> <br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(Graph G, <span class="hljs-type">int</span> v)</span> </span>&#123;          <span class="hljs-comment">//从顶点v出发，对图G进行深度优先遍历</span><br>	<span class="hljs-built_in">visit</span>(G, v);                    <span class="hljs-comment">//访问顶点v</span><br>	visited[v] = <span class="hljs-literal">true</span>;              <span class="hljs-comment">//标记已访问</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> w = <span class="hljs-built_in">getFirstNeighbor</span>(G, v); w &gt;= <span class="hljs-number">0</span>; w = <span class="hljs-built_in">getNextNeighbor</span>(G, v,w)) &#123;<br>		<span class="hljs-keyword">if</span> (!visited[w]) &#123;          <span class="hljs-comment">//w顶点没被访问</span><br>			<span class="hljs-built_in">DFS</span>(G, w);              <span class="hljs-comment">//递归调用DFS</span><br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><ul>
 <li><p><strong>关键词：返回所有可能方案。</strong></p>
 </li>
@@ -507,9 +509,6 @@
 
 <h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><p>利用 bitset 进行任意进制转二进制</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// stol() 第二个参数默认为 NULL，第三个默认 10 进制，可 8/16 进制</span><br><span class="hljs-function">bitset&lt;16&gt; <span class="hljs-title">bin</span><span class="hljs-params">(stol(t, <span class="hljs-literal">nullptr</span>, <span class="hljs-number">16</span>))</span></span>;   先转为 <span class="hljs-type">long</span>，通过 bitset 转为二进制 <span class="hljs-number">16</span> 位<br>string s = bin.<span class="hljs-built_in">to_string</span>();<br></code></pre></td></tr></table></figure>
-
-
-
 
                 
               </div>
